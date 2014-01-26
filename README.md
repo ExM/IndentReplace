@@ -11,12 +11,16 @@ This tool allows you to automatically switch between spaces and tabs into git an
 
 Example:
 Need to add these lines to the file .git/config
- [filter "tabspace4"]
-     smudge = c:/Tools/IndentReplace/IndentReplace.exe -s=4 -i=tab
-     clean = c:/Tools/IndentReplace/IndentReplace.exe -s=4 -i=space
-
+```
+[filter "tabspace4"]
+    smudge = c:/Tools/IndentReplace/IndentReplace.exe -s=4 -i=tab
+    clean = c:/Tools/IndentReplace/IndentReplace.exe -s=4 -i=space
+```
 And this line to the file .git/info/attributes
- *.cs  filter=tabspace4
-
+```
+*.cs  filter=tabspace4
+```
 And run command:
- git checkout HEAD -- **
+```
+git checkout HEAD -- **
+```
