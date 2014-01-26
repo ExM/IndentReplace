@@ -1,0 +1,8 @@
+﻿NUnit is a unit-testing framework for all .Net languages.
+
+Site:
+ http://www.nunit.org/
+
+Download url:
+ http://launchpad.net/nunitv2/trunk/2.6.3/+download/NUnit-2.6.3.zip
+ https://launchpadlibrarian.net/153448659/NUnit-2.6.3.zip
