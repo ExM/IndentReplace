@@ -5,3 +5,6 @@ TestResults
 *.user
 [Dd]ebug/
 [Rr]elease/
+
+/.vs
+/.idea

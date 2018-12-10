@@ -14,9 +14,13 @@ namespace IndentReplace
 			bool showHelp = false;
 			string indent = "";
 			int tabSize = 0;
+			string path = "";
+			string mask = "";
 
 			var p = new OptionSet()
 			{
+				{ "p=|path=", "search files path", v => path = v },
+				{ "m=|mask=", "search files mask", v => mask = v },
 				{ "s=|tabSize=", "tab size", v => tabSize = int.Parse(v) },
 				{ "i=|indent=", "required character indentation (tab or space)", v => indent = v },
 				{ "h|?|help", "show this message and exit", v => showHelp = v != null },
@@ -54,7 +58,22 @@ namespace IndentReplace
 				else
 					throw new ArgumentException("character indentation should be 'tab' or 'space'");
 
-				StandardIO(action);
+				if(path == "" && mask == "")
+					StandardIO(action);
+				else
+				{
+					foreach(var fileName in Directory.EnumerateFiles(path, mask, SearchOption.AllDirectories))
+					{
+						Console.WriteLine("Convert: {0}", fileName);
+						using (var srcCopy = new MemoryStream(File.ReadAllBytes(fileName)))
+						using (var dst = File.OpenWrite(fileName))
+						{
+							dst.SetLength(0);
+							action(srcCopy, dst);
+						}
+					}
+				}
+
 				return 0;
 			}
 			catch (Exception e)
